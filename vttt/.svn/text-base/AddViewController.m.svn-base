@@ -1,0 +1,102 @@
+//
+//  AddViewController.m
+//  Magazzino
+//
+//  Created by Marco Velluto on 30/08/12.
+//  Copyright (c) 2012 Marco Velluto. All rights reserved.
+//
+
+#import "AddViewController.h"
+#import "ListaArticoli.h"
+
+@interface AddViewController ()
+//143
+@end
+
+@implementation AddViewController
+
+@synthesize listaArticoli = _listaArticoli;
+@synthesize codeTextField = _codeTextField;
+@synthesize nameTextField = _nameTextField;
+@synthesize priceTextField = _priceTextField;
+@synthesize categoryTextField = _categoryTextField;
+@synthesize descriptionTextField = _descriptionTextField;
+@synthesize currencyButton = _currencyButton;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view.
+    
+    self.currencyButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.currencyButton.frame = CGRectMake(0.0f, 0.0f, 25.0f, 12.0f);
+    self.currencyButton.backgroundColor = [UIColor lightGrayColor];
+    self.currencyButton.titleLabel.font = [UIFont boldSystemFontOfSize:12.0f];
+    self.currencyButton.titleLabel.textAlignment = UITextAlignmentCenter;
+    [self.currencyButton setTitle:[Articolo convertCurrencyToString:EURO] forState:UIControlStateNormal];
+    [self.currencyButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [self.currencyButton addTarget:self action:@selector(changeCurrency:) forControlEvents:UIControlStateHighlighted];
+    
+    self.priceTextField.rightView = self.currencyButton;
+    self.priceTextField.rightViewMode = UITextFieldViewModeAlways;
+}
+
+- (void)viewDidUnload
+{
+    [self setCodeTextField:nil];
+    [self setNameTextField:nil];
+    [self setPriceTextField:nil];
+    [self setCategoryTextField:nil];
+    [self setDescriptionTextField:nil];
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    self.currencyButton = nil;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma mark - Action Method
+
+- (IBAction)saveArticle:(id)sender {
+    
+    NSString* code = self.codeTextField.text;
+    NSString* name = self.nameTextField.text;
+    NSNumber* price = self.priceTextField.text;
+    NSString* category = self.categoryTextField.text;
+    NSString* description = self.descriptionTextField.text;
+    
+    Articolo* art = [[Articolo alloc] initWithCode:code withName:name withPrice:0.00 inValuta:EURO inCategory:category withDescription:description];
+    
+    //Salvo l'articolo nel model
+    [self.listaArticoli addArticle:art]; /*NON ENTRA IN ADDARTICLE*/
+    
+    //Dovrà tornare alla view precedente 
+}
+
+- (IBAction)changeCurrency:(id)sender {
+    
+    //Scrivo metodo
+}
+
+- (IBAction)upSwipe:(id)sender {
+    
+    [self becomeFirstResponder];
+}
+
+- (IBAction)downSwipe:(id)sender {
+    
+    [self resignFirstResponder];
+}
+@end

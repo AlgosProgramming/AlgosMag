@@ -1,0 +1,29 @@
+//
+//  AddViewController.h
+//  Magazzino
+//
+//  Created by Marco Velluto on 30/08/12.
+//  Copyright (c) 2012 Marco Velluto. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@class ListaArticoli;
+
+@interface AddViewController : UIViewController <UITextFieldDelegate>
+
+@property (nonatomic, strong) ListaArticoli* listaArticoli;
+
+@property (strong, nonatomic) IBOutlet UITextField *codeTextField;
+@property (strong, nonatomic) IBOutlet UITextField *nameTextField;
+@property (strong, nonatomic) IBOutlet UITextField *priceTextField;
+@property (strong, nonatomic) IBOutlet UITextField *categoryTextField;
+@property (strong, nonatomic) IBOutlet UITextField *descriptionTextField;
+@property (strong, nonatomic) IBOutlet UIButton* currencyButton;
+
+- (IBAction)saveArticle:(id)sender;
+- (IBAction)changeCurrency:(id)sender;
+- (IBAction)upSwipe:(id)sender;
+- (IBAction)downSwipe:(id)sender;
+
+@end

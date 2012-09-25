@@ -1,0 +1,556 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0ED75BD915F770AF00EED929 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0ED75BD815F770AF00EED929 /* Settings.bundle */; };
+		0ED75BDD15F786E900EED929 /* CategoryImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ED75BDC15F786E900EED929 /* CategoryImage.png */; };
+		0ED75BDF15F7878700EED929 /* AzOrderImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ED75BDE15F7878700EED929 /* AzOrderImage.png */; };
+		B4095F1815E777CC0088EEF3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4095F1715E777CC0088EEF3 /* UIKit.framework */; };
+		B4095F1A15E777CC0088EEF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4095F1915E777CC0088EEF3 /* Foundation.framework */; };
+		B4095F1C15E777CC0088EEF3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4095F1B15E777CC0088EEF3 /* CoreGraphics.framework */; };
+		B4095F1E15E777CC0088EEF3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4095F1D15E777CC0088EEF3 /* CoreData.framework */; };
+		B4095F2415E777CC0088EEF3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4095F2215E777CC0088EEF3 /* InfoPlist.strings */; };
+		B4095F2615E777CC0088EEF3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B4095F2515E777CC0088EEF3 /* main.m */; };
+		B4095F2A15E777CC0088EEF3 /* MagAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4095F2915E777CC0088EEF3 /* MagAppDelegate.m */; };
+		B4095F3315E777CC0088EEF3 /* Magazzino.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4095F3115E777CC0088EEF3 /* Magazzino.xcdatamodeld */; };
+		B4095F3615E777CC0088EEF3 /* MagMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4095F3515E777CC0088EEF3 /* MagMasterViewController.m */; };
+		B4095F3915E777CC0088EEF3 /* MagDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4095F3815E777CC0088EEF3 /* MagDetailViewController.m */; };
+		B4095F4115E777CC0088EEF3 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4095F4015E777CC0088EEF3 /* SenTestingKit.framework */; };
+		B4095F4215E777CC0088EEF3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4095F1715E777CC0088EEF3 /* UIKit.framework */; };
+		B4095F4315E777CC0088EEF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4095F1915E777CC0088EEF3 /* Foundation.framework */; };
+		B4095F4415E777CC0088EEF3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4095F1D15E777CC0088EEF3 /* CoreData.framework */; };
+		B4095F4C15E777CC0088EEF3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4095F4A15E777CC0088EEF3 /* InfoPlist.strings */; };
+		B4095F4F15E777CC0088EEF3 /* MagazzinoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4095F4E15E777CC0088EEF3 /* MagazzinoTests.m */; };
+		B41F5B6915F0BCCC004AE2A6 /* articoli.plist in Resources */ = {isa = PBXBuildFile; fileRef = B41F5B6815F0BCCC004AE2A6 /* articoli.plist */; };
+		B422E29815F735EB00F76972 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B422E29615F735EB00F76972 /* MainStoryboard_iPhone.storyboard */; };
+		B422E29915F735EB00F76972 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B422E29715F735EB00F76972 /* MainStoryboard_iPad.storyboard */; };
+		B43327BA15F0B4270013B461 /* Articolo.m in Sources */ = {isa = PBXBuildFile; fileRef = B43327B715F0B4270013B461 /* Articolo.m */; };
+		B43327BB15F0B4270013B461 /* ListaArticoli.m in Sources */ = {isa = PBXBuildFile; fileRef = B43327B915F0B4270013B461 /* ListaArticoli.m */; };
+		B43327C115F0B4470013B461 /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B43327BE15F0B4470013B461 /* AddViewController.m */; };
+		B43327C215F0B4470013B461 /* CurrencySelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B43327C015F0B4470013B461 /* CurrencySelectorViewController.m */; };
+		B4FC1E2615E907F600DD7696 /* Brazil.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FC1E2515E907F600DD7696 /* Brazil.png */; };
+		B4FC1E2915E9081000DD7696 /* Belgium.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FC1E2815E9081000DD7696 /* Belgium.png */; };
+		B4FC1E2D15E908BB00DD7696 /* Romania.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FC1E2C15E908BB00DD7696 /* Romania.png */; };
+		B4FC1E3015E9092D00DD7696 /* Switzerland.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FC1E2E15E9092D00DD7696 /* Switzerland.png */; };
+		B4FC1E3115E9092D00DD7696 /* Ukraine.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FC1E2F15E9092D00DD7696 /* Ukraine.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B4095F4515E777CC0088EEF3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B4095F0A15E777CC0088EEF3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B4095F1215E777CC0088EEF3;
+			remoteInfo = Magazzino;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0ED75BD815F770AF00EED929 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		0ED75BDC15F786E900EED929 /* CategoryImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CategoryImage.png; sourceTree = "<group>"; };
+		0ED75BDE15F7878700EED929 /* AzOrderImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AzOrderImage.png; sourceTree = "<group>"; };
+		B4095F1315E777CC0088EEF3 /* Magazzino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Magazzino.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4095F1715E777CC0088EEF3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B4095F1915E777CC0088EEF3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B4095F1B15E777CC0088EEF3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B4095F1D15E777CC0088EEF3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		B4095F2115E777CC0088EEF3 /* Magazzino-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Magazzino-Info.plist"; sourceTree = "<group>"; };
+		B4095F2315E777CC0088EEF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B4095F2515E777CC0088EEF3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B4095F2715E777CC0088EEF3 /* Magazzino-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Magazzino-Prefix.pch"; sourceTree = "<group>"; };
+		B4095F2815E777CC0088EEF3 /* MagAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagAppDelegate.h; sourceTree = "<group>"; };
+		B4095F2915E777CC0088EEF3 /* MagAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagAppDelegate.m; sourceTree = "<group>"; };
+		B4095F3215E777CC0088EEF3 /* Magazzino.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Magazzino.xcdatamodel; sourceTree = "<group>"; };
+		B4095F3415E777CC0088EEF3 /* MagMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagMasterViewController.h; sourceTree = "<group>"; };
+		B4095F3515E777CC0088EEF3 /* MagMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagMasterViewController.m; sourceTree = "<group>"; };
+		B4095F3715E777CC0088EEF3 /* MagDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagDetailViewController.h; sourceTree = "<group>"; };
+		B4095F3815E777CC0088EEF3 /* MagDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagDetailViewController.m; sourceTree = "<group>"; };
+		B4095F3F15E777CC0088EEF3 /* MagazzinoTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MagazzinoTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4095F4015E777CC0088EEF3 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		B4095F4915E777CC0088EEF3 /* MagazzinoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MagazzinoTests-Info.plist"; sourceTree = "<group>"; };
+		B4095F4B15E777CC0088EEF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B4095F4D15E777CC0088EEF3 /* MagazzinoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagazzinoTests.h; sourceTree = "<group>"; };
+		B4095F4E15E777CC0088EEF3 /* MagazzinoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagazzinoTests.m; sourceTree = "<group>"; };
+		B41F5B6815F0BCCC004AE2A6 /* articoli.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = articoli.plist; sourceTree = "<group>"; };
+		B422E29615F735EB00F76972 /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		B422E29715F735EB00F76972 /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		B43327B615F0B4270013B461 /* Articolo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Articolo.h; sourceTree = "<group>"; };
+		B43327B715F0B4270013B461 /* Articolo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Articolo.m; sourceTree = "<group>"; };
+		B43327B815F0B4270013B461 /* ListaArticoli.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListaArticoli.h; sourceTree = "<group>"; };
+		B43327B915F0B4270013B461 /* ListaArticoli.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListaArticoli.m; sourceTree = "<group>"; };
+		B43327BD15F0B4470013B461 /* AddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddViewController.h; sourceTree = "<group>"; };
+		B43327BE15F0B4470013B461 /* AddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddViewController.m; sourceTree = "<group>"; };
+		B43327BF15F0B4470013B461 /* CurrencySelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencySelectorViewController.h; sourceTree = "<group>"; };
+		B43327C015F0B4470013B461 /* CurrencySelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencySelectorViewController.m; sourceTree = "<group>"; };
+		B4FC1E2515E907F600DD7696 /* Brazil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Brazil.png; sourceTree = "<group>"; };
+		B4FC1E2815E9081000DD7696 /* Belgium.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Belgium.png; sourceTree = "<group>"; };
+		B4FC1E2C15E908BB00DD7696 /* Romania.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Romania.png; sourceTree = "<group>"; };
+		B4FC1E2E15E9092D00DD7696 /* Switzerland.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Switzerland.png; sourceTree = "<group>"; };
+		B4FC1E2F15E9092D00DD7696 /* Ukraine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ukraine.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B4095F1015E777CC0088EEF3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4095F1815E777CC0088EEF3 /* UIKit.framework in Frameworks */,
+				B4095F1A15E777CC0088EEF3 /* Foundation.framework in Frameworks */,
+				B4095F1C15E777CC0088EEF3 /* CoreGraphics.framework in Frameworks */,
+				B4095F1E15E777CC0088EEF3 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4095F3B15E777CC0088EEF3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4095F4115E777CC0088EEF3 /* SenTestingKit.framework in Frameworks */,
+				B4095F4215E777CC0088EEF3 /* UIKit.framework in Frameworks */,
+				B4095F4315E777CC0088EEF3 /* Foundation.framework in Frameworks */,
+				B4095F4415E777CC0088EEF3 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0EC84F2D15EA657300273B38 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B43327B615F0B4270013B461 /* Articolo.h */,
+				B43327B715F0B4270013B461 /* Articolo.m */,
+				B43327B815F0B4270013B461 /* ListaArticoli.h */,
+				B43327B915F0B4270013B461 /* ListaArticoli.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		0EC84F2F15EA657E00273B38 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0ED75BDE15F7878700EED929 /* AzOrderImage.png */,
+				0ED75BDC15F786E900EED929 /* CategoryImage.png */,
+				B43327BD15F0B4470013B461 /* AddViewController.h */,
+				B43327BE15F0B4470013B461 /* AddViewController.m */,
+				B43327BF15F0B4470013B461 /* CurrencySelectorViewController.h */,
+				B43327C015F0B4470013B461 /* CurrencySelectorViewController.m */,
+				B4095F3415E777CC0088EEF3 /* MagMasterViewController.h */,
+				B4095F3515E777CC0088EEF3 /* MagMasterViewController.m */,
+				B4095F3715E777CC0088EEF3 /* MagDetailViewController.h */,
+				B4095F3815E777CC0088EEF3 /* MagDetailViewController.m */,
+				B422E29615F735EB00F76972 /* MainStoryboard_iPhone.storyboard */,
+				B422E29715F735EB00F76972 /* MainStoryboard_iPad.storyboard */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		B4095F0815E777CC0088EEF3 = {
+			isa = PBXGroup;
+			children = (
+				B4095F1F15E777CC0088EEF3 /* Magazzino */,
+				B4095F4715E777CC0088EEF3 /* MagazzinoTests */,
+				B4095F1415E777CC0088EEF3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B4095F1415E777CC0088EEF3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B4095F1315E777CC0088EEF3 /* Magazzino.app */,
+				B4095F3F15E777CC0088EEF3 /* MagazzinoTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B4095F1615E777CC0088EEF3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B4095F1715E777CC0088EEF3 /* UIKit.framework */,
+				B4095F1915E777CC0088EEF3 /* Foundation.framework */,
+				B4095F1B15E777CC0088EEF3 /* CoreGraphics.framework */,
+				B4095F1D15E777CC0088EEF3 /* CoreData.framework */,
+				B4095F4015E777CC0088EEF3 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		B4095F1F15E777CC0088EEF3 /* Magazzino */ = {
+			isa = PBXGroup;
+			children = (
+				0EC84F2F15EA657E00273B38 /* Controller */,
+				0EC84F2D15EA657300273B38 /* Model */,
+				B4095F2815E777CC0088EEF3 /* MagAppDelegate.h */,
+				B4095F2915E777CC0088EEF3 /* MagAppDelegate.m */,
+				B4095F3115E777CC0088EEF3 /* Magazzino.xcdatamodeld */,
+				B4095F2015E777CC0088EEF3 /* Supporting Files */,
+			);
+			path = Magazzino;
+			sourceTree = "<group>";
+		};
+		B4095F2015E777CC0088EEF3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0ED75BD815F770AF00EED929 /* Settings.bundle */,
+				B4FC1E2C15E908BB00DD7696 /* Romania.png */,
+				B4FC1E2E15E9092D00DD7696 /* Switzerland.png */,
+				B4FC1E2F15E9092D00DD7696 /* Ukraine.png */,
+				B4FC1E2815E9081000DD7696 /* Belgium.png */,
+				B4FC1E2515E907F600DD7696 /* Brazil.png */,
+				B4095F2115E777CC0088EEF3 /* Magazzino-Info.plist */,
+				B4095F2215E777CC0088EEF3 /* InfoPlist.strings */,
+				B4095F2515E777CC0088EEF3 /* main.m */,
+				B4095F2715E777CC0088EEF3 /* Magazzino-Prefix.pch */,
+				B41F5B6815F0BCCC004AE2A6 /* articoli.plist */,
+				B4095F1615E777CC0088EEF3 /* Frameworks */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B4095F4715E777CC0088EEF3 /* MagazzinoTests */ = {
+			isa = PBXGroup;
+			children = (
+				B4095F4D15E777CC0088EEF3 /* MagazzinoTests.h */,
+				B4095F4E15E777CC0088EEF3 /* MagazzinoTests.m */,
+				B4095F4815E777CC0088EEF3 /* Supporting Files */,
+			);
+			path = MagazzinoTests;
+			sourceTree = "<group>";
+		};
+		B4095F4815E777CC0088EEF3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B4095F4915E777CC0088EEF3 /* MagazzinoTests-Info.plist */,
+				B4095F4A15E777CC0088EEF3 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B4095F1215E777CC0088EEF3 /* Magazzino */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4095F5215E777CC0088EEF3 /* Build configuration list for PBXNativeTarget "Magazzino" */;
+			buildPhases = (
+				B4095F0F15E777CC0088EEF3 /* Sources */,
+				B4095F1015E777CC0088EEF3 /* Frameworks */,
+				B4095F1115E777CC0088EEF3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Magazzino;
+			productName = Magazzino;
+			productReference = B4095F1315E777CC0088EEF3 /* Magazzino.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B4095F3E15E777CC0088EEF3 /* MagazzinoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4095F5515E777CC0088EEF3 /* Build configuration list for PBXNativeTarget "MagazzinoTests" */;
+			buildPhases = (
+				B4095F3A15E777CC0088EEF3 /* Sources */,
+				B4095F3B15E777CC0088EEF3 /* Frameworks */,
+				B4095F3C15E777CC0088EEF3 /* Resources */,
+				B4095F3D15E777CC0088EEF3 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B4095F4615E777CC0088EEF3 /* PBXTargetDependency */,
+			);
+			name = MagazzinoTests;
+			productName = MagazzinoTests;
+			productReference = B4095F3F15E777CC0088EEF3 /* MagazzinoTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B4095F0A15E777CC0088EEF3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = Mag;
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = algos;
+			};
+			buildConfigurationList = B4095F0D15E777CC0088EEF3 /* Build configuration list for PBXProject "Magazzino" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B4095F0815E777CC0088EEF3;
+			productRefGroup = B4095F1415E777CC0088EEF3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B4095F1215E777CC0088EEF3 /* Magazzino */,
+				B4095F3E15E777CC0088EEF3 /* MagazzinoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B4095F1115E777CC0088EEF3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4095F2415E777CC0088EEF3 /* InfoPlist.strings in Resources */,
+				B4FC1E2615E907F600DD7696 /* Brazil.png in Resources */,
+				B4FC1E2915E9081000DD7696 /* Belgium.png in Resources */,
+				B4FC1E2D15E908BB00DD7696 /* Romania.png in Resources */,
+				B4FC1E3015E9092D00DD7696 /* Switzerland.png in Resources */,
+				B4FC1E3115E9092D00DD7696 /* Ukraine.png in Resources */,
+				B41F5B6915F0BCCC004AE2A6 /* articoli.plist in Resources */,
+				B422E29815F735EB00F76972 /* MainStoryboard_iPhone.storyboard in Resources */,
+				B422E29915F735EB00F76972 /* MainStoryboard_iPad.storyboard in Resources */,
+				0ED75BD915F770AF00EED929 /* Settings.bundle in Resources */,
+				0ED75BDD15F786E900EED929 /* CategoryImage.png in Resources */,
+				0ED75BDF15F7878700EED929 /* AzOrderImage.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4095F3C15E777CC0088EEF3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4095F4C15E777CC0088EEF3 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B4095F3D15E777CC0088EEF3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B4095F0F15E777CC0088EEF3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4095F2615E777CC0088EEF3 /* main.m in Sources */,
+				B4095F2A15E777CC0088EEF3 /* MagAppDelegate.m in Sources */,
+				B4095F3315E777CC0088EEF3 /* Magazzino.xcdatamodeld in Sources */,
+				B4095F3615E777CC0088EEF3 /* MagMasterViewController.m in Sources */,
+				B4095F3915E777CC0088EEF3 /* MagDetailViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4095F3A15E777CC0088EEF3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4095F4F15E777CC0088EEF3 /* MagazzinoTests.m in Sources */,
+				B43327BA15F0B4270013B461 /* Articolo.m in Sources */,
+				B43327BB15F0B4270013B461 /* ListaArticoli.m in Sources */,
+				B43327C115F0B4470013B461 /* AddViewController.m in Sources */,
+				B43327C215F0B4470013B461 /* CurrencySelectorViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B4095F4615E777CC0088EEF3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B4095F1215E777CC0088EEF3 /* Magazzino */;
+			targetProxy = B4095F4515E777CC0088EEF3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B4095F2215E777CC0088EEF3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B4095F2315E777CC0088EEF3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B4095F4A15E777CC0088EEF3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B4095F4B15E777CC0088EEF3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B4095F5015E777CC0088EEF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B4095F5115E777CC0088EEF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B4095F5315E777CC0088EEF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Magazzino/Magazzino-Prefix.pch";
+				INFOPLIST_FILE = "Magazzino/Magazzino-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		B4095F5415E777CC0088EEF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Magazzino/Magazzino-Prefix.pch";
+				INFOPLIST_FILE = "Magazzino/Magazzino-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		B4095F5615E777CC0088EEF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Magazzino.app/Magazzino";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Magazzino/Magazzino-Prefix.pch";
+				INFOPLIST_FILE = "MagazzinoTests/MagazzinoTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		B4095F5715E777CC0088EEF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Magazzino.app/Magazzino";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Magazzino/Magazzino-Prefix.pch";
+				INFOPLIST_FILE = "MagazzinoTests/MagazzinoTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B4095F0D15E777CC0088EEF3 /* Build configuration list for PBXProject "Magazzino" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4095F5015E777CC0088EEF3 /* Debug */,
+				B4095F5115E777CC0088EEF3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4095F5215E777CC0088EEF3 /* Build configuration list for PBXNativeTarget "Magazzino" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4095F5315E777CC0088EEF3 /* Debug */,
+				B4095F5415E777CC0088EEF3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4095F5515E777CC0088EEF3 /* Build configuration list for PBXNativeTarget "MagazzinoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4095F5615E777CC0088EEF3 /* Debug */,
+				B4095F5715E777CC0088EEF3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B4095F3115E777CC0088EEF3 /* Magazzino.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B4095F3215E777CC0088EEF3 /* Magazzino.xcdatamodel */,
+			);
+			currentVersion = B4095F3215E777CC0088EEF3 /* Magazzino.xcdatamodel */;
+			path = Magazzino.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = B4095F0A15E777CC0088EEF3 /* Project object */;
+}

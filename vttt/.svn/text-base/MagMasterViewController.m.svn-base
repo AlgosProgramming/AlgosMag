@@ -1,0 +1,653 @@
+//
+//  MagMasterViewController.m
+//  Magazzino
+//
+//  Created by Grails on 24/08/12.
+//  Copyright (c) 2012 algos. All rights reserved.
+//marco
+
+
+#import "MagMasterViewController.h"
+
+#import "MagDetailViewController.h"
+
+@interface MagMasterViewController ()
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+@end
+
+static BOOL const mostraIcone = false;
+static BOOL alfabeticOrder;
+static NSString * typeList;
+static BOOL mostraTotaleArticloli;
+
+static NSString const *namePlist = @"articoli";
+
+
+@implementation MagMasterViewController
+
+@synthesize articoliAz;
+@synthesize typeListButton;
+@synthesize changeTypeListButton;
+@synthesize dicArticoli;
+@synthesize category;
+
+- (void)awakeFromNib
+{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        self.clearsSelectionOnViewWillAppear = NO;
+        self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
+    }
+    [super awakeFromNib];
+}
+
+- (void)viewDidLoad
+{
+    /*
+    CGRect rect = CGRectMake(20, 20, 200, 200);
+    
+    UITableView *tv = [[UITableView alloc] initWithFrame:rect style:UITableViewStyleGrouped];
+    [self setTableView:tv];
+    */
+    
+    UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
+    //self.tableView = tableView;
+    
+    // Titolo della colonna di sinistra
+    self.navigationItem.title = NSLocalizedString(@"Lista", @"Lista");
+    [self.changeTypeListButton setEnabled:YES forSegmentAtIndex:0];
+    [self.changeTypeListButton setEnabled:YES forSegmentAtIndex:1];
+    [self.changeTypeListButton setEnabled:YES forSegmentAtIndex:2];
+    
+    
+    if (alfabeticOrder) {
+        [self.changeTypeListButton setSelectedSegmentIndex:0];
+
+    } else {
+        [self.changeTypeListButton setSelectedSegmentIndex:1];
+
+    }
+
+    [self.changeTypeListButton setTitle:@"Az" forSegmentAtIndex:0];
+    [self.changeTypeListButton setTitle:@"Category" forSegmentAtIndex:1];
+    [self.changeTypeListButton setTitle:@"Favourite" forSegmentAtIndex:2];
+        
+    //self.lista = array;
+
+    [typeListButton setTitle:@"+"];
+    if (alfabeticOrder) {
+        [self regolaVista:alfabeticOrder];
+
+
+    } else {
+        [self inizializza];
+    }
+    
+    [super viewDidLoad];
+	// Do any additional setup after loading the view, typically from a nib.
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+
+    //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
+    //self.navigationItem.rightBarButtonItem = addButton;
+    self.detailViewController = (MagDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    
+    
+}
+
+
+//Temporanemente disabilitato - serve x cambiare il tipo di lista
+- (void)loadView2 {
+    
+    UITableView *tableView = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame] style:UITableViewStyleGrouped];
+    tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    [tableView reloadData];
+    self.view = tableView;    
+    //self.tableView = tableView;
+}
+
+- (void)viewDidUnload
+{
+    [self setTypeListButton:nil];
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [self loadSettings];
+    
+    if (alfabeticOrder) {
+        NSLog(@"+++ TRUE");
+    } else {
+        NSLog(@"--- FALSE");
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    
+    
+}
+
+- (void)viewWillUnload {
+    
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    
+    
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    } else {
+        return YES;
+    }
+}
+
+- (void)insertNewObject:(id)sender
+{
+    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
+    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+    
+    // If appropriate, configure the new managed object.
+    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
+   // [newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
+    [newManagedObject setValue:[NSString string] forKey:@"stringa"];
+    
+    // Save the context.
+    NSError *error = nil;
+    if (![context save:&error]) {
+         // Replace this implementation with code to handle the error appropriately.
+         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+}
+
+- (void)adddIthem:(id)sender
+{
+
+    
+}
+
+#pragma mark - Table View
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    if (alfabeticOrder) {
+        
+        [self regolaVista:alfabeticOrder];
+        return [[self.fetchedResultsController sections] count];
+    } else {
+        
+        return [self.categoryArticoli count];
+    }
+
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    //id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    //return [sectionInfo numberOfObjects];
+    
+    if (alfabeticOrder) {
+        
+        return [articoliAz count];
+    } else {
+        
+        NSString * categoryTemp = [self.categoryArticoli objectAtIndex:section];
+        NSArray *articoliTemp = [self.articoli objectForKey:categoryTemp];
+        return [articoliTemp count];
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    //[self configureCell:cell atIndexPath:indexPath];
+    
+    if (alfabeticOrder) {
+        
+        cell.textLabel.text = [articoliAz objectAtIndex:indexPath.row];
+    } else {
+        
+        NSString *categoryTemp = [self.categoryArticoli objectAtIndex:[indexPath section]];
+        NSArray *articoliTemp = [self.articoli objectForKey:categoryTemp];
+        
+        cell.textLabel.text = [articoliTemp objectAtIndex:[indexPath row]];
+    }
+    
+
+    
+    return cell;
+    //--display an image--
+    UIImage *image;
+    switch (indexPath.row) {
+        case 1:
+             image = [UIImage imageNamed:@"Ukraine.png"];
+            break;
+        case 2:
+            image = [UIImage imageNamed:@"Brazil.png"];
+            break;
+        case 3:
+            image = [UIImage imageNamed:@"Switzerland.png"];
+            break;
+            
+        default:
+            image = [UIImage imageNamed:@"Belgium.png"];
+          break;
+    }
+    
+    if (mostraIcone) {
+        cell.imageView.image = image;
+    }
+    
+    return cell;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+        
+        NSError *error = nil;
+        if (![context save:&error]) {
+             // Replace this implementation with code to handle the error appropriately.
+             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }   
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // The table view should not be re-orderable.
+    return NO;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        
+        if (!self.detailViewController) {
+            
+            self.detailViewController = [[MagDetailViewController alloc] initWithNibName:@"MagDetailViewController" bundle:nil];
+        }
+        self.detailViewController.detailItem = [NSString stringWithFormat:@"%@", [articoliAz objectAtIndex:indexPath.row]];
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"showDetail"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+        [[segue destinationViewController] setDetailItem:object];
+    }
+}
+
+//--display the header--
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    
+    if (alfabeticOrder) {
+        
+        return @"Lista articoli";
+    } else {
+        
+        NSString *categoryTemp = [self.categoryArticoli objectAtIndex:section];
+        return categoryTemp;
+    }
+}
+
+
+//--display the footer--
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section{
+    
+    if (alfabeticOrder & mostraTotaleArticloli) {
+        NSInteger articoliNum = [articoliAz count];
+        return[[NSString alloc] initWithFormat:@"Nel magazzino ci sono %d articoli",articoliNum];
+
+    } else {
+        return nil;
+    }
+}
+
+//--display della singola cella--
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    //if (indexPath.row == 0 || indexPath.row%2 == 0) {
+        
+        //UIColor *altCellColor = [UIColor colorWithWhite:0.3 alpha:0.2];
+        //cell.backgroundColor = altCellColor;
+    //}
+}
+
+//--indenting each row--
+//--non funziona--
+- (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return [indexPath row] % 2;
+}
+
+
+//--heiht of each row--
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 40;
+    //return 40 + 30 * ([indexPath row] % 2);
+}
+
+#pragma mark - Change List Methods
+
+- (void)toggleTypeListButton {
+    UIImage* icon;
+    
+    if (alfabeticOrder) {
+        
+        icon = [UIImage imageNamed:@"Ukraine.png"];
+        [typeListButton setTitle:@"+"];
+        [self regolaVista:TRUE];
+        alfabeticOrder = FALSE;
+    } else {
+        
+        icon = [UIImage imageNamed:@"Romania.png"];
+        [typeListButton setTitle:@"-"];
+        [self regolaVista:FALSE];
+        alfabeticOrder = TRUE;
+    }
+    
+    //Fa il refresh
+    [self.tableView reloadData];
+    //[typeLisrButton setImage:icon];
+}
+
+- (void)regolaVista:(BOOL)alfabetic {
+    
+    if (alfabetic) {
+        
+        self.articoliAz = [self listaArticoli];
+        self.dicArticoli = nil;
+        self.category = nil;
+    }else {
+        
+        self.articoliAz = nil;
+        self.dicArticoli = [self getDictionaryArticoli];
+        self.category = [[self.dicArticoli allKeys] sortedArrayUsingSelector:@selector(compare:)];
+    }
+}
+
+- (IBAction)pressChageTypeListButton:(id)sender {
+        
+    [self chageViewOrderWithPosition:[self.changeTypeListButton selectedSegmentIndex]];
+
+}
+
+- (void)chageViewOrderWithPosition:(int)posizione{
+    
+    switch (posizione)  {
+        case 0:
+            
+            alfabeticOrder = TRUE;
+            [self regolaVista:alfabeticOrder];
+
+            break;
+            
+        case 1:
+            
+            alfabeticOrder = FALSE;
+            [self regolaVista:alfabeticOrder];
+            break;
+            
+        case 2:
+            
+            //
+            break;
+            
+        default:
+            break;
+    }
+    
+    [self.tableView reloadData];
+}
+
+
+
+- (IBAction)pressTypeListButton:(id)sender {
+    
+    [self toggleTypeListButton];
+}
+
+#pragma mark - Fetched results controller
+
+- (NSFetchedResultsController *)fetchedResultsController
+{
+    if (_fetchedResultsController != nil) {
+        return _fetchedResultsController;
+    }
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    // Set the batch size to a suitable number.
+    [fetchRequest setFetchBatchSize:20];
+    
+    // Edit the sort key as appropriate.
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sigla" ascending:NO];
+    NSArray *sortDescriptors = @[sortDescriptor];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    // Edit the section name key path and cache name if appropriate.
+    // nil for section name key path means "no sections".
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Master"];
+    aFetchedResultsController.delegate = self;
+    self.fetchedResultsController = aFetchedResultsController;
+    
+	NSError *error = nil;
+	if (![self.fetchedResultsController performFetch:&error]) {
+	     // Replace this implementation with code to handle the error appropriately.
+	     // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
+	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+	    abort();
+	}
+    
+    return _fetchedResultsController;
+}    
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView beginUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
+           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
+{
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath
+{
+    UITableView *tableView = self.tableView;
+    
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeUpdate:
+            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            break;
+            
+        case NSFetchedResultsChangeMove:
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView endUpdates];
+}
+
+/*
+// Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed. 
+ 
+ - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    // In the simplest, most efficient, case, reload the table view.
+    [self.tableView reloadData];
+}
+ */
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = [[object valueForKey:@"sigla"] description];
+}
+
+//--adding indexing--
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView{
+    NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+    [tempArray addObject:@"1"];
+    [tempArray addObject:@"2"];
+    [tempArray addObject:@"3"];
+    [tempArray addObject:@"4"];
+    [tempArray addObject:@"5"];
+    [tempArray addObject:@"6"];
+//    [tempArray addObject:@"7"];
+//    [tempArray addObject:@"8"];
+//    [tempArray addObject:@"9"];
+//    [tempArray addObject:@"10"];
+//    [tempArray addObject:@"11"];
+//    [tempArray addObject:@"12"];
+//    [tempArray addObject:@"13"];
+
+    //--solo se la lista è lunga--
+    if ([articoliAz count]>30) {
+        return tempArray;
+    } else {
+        return nil;
+    }
+}
+
+
+
+
+#pragma mark - plist
+
+//--- lista articoli in ordine alfabetico
+//--- legge dictionary
+//--- crea lista articoli
+
+- (NSArray *)listaArticoli {
+    static NSString *namePlist = @"articoli";
+    
+    //--- legge dictionary
+    NSDictionary *dictionary = [self dictionaryWithString:namePlist];
+    
+    //NSArray *arrayKeys = [[self.categorieMerceologiche allKeys] sortedArrayUsingSelector:@selector(compare:)];
+    
+    //--- crea lista articoli
+   NSArray *listaArticoli = [self articoliFromDictionary:dictionary];
+
+    //--- ordina in modo alfabetico
+    listaArticoli = [listaArticoli sortedArrayUsingSelector:@selector(compare:)];
+
+    return listaArticoli;
+
+}
+
+- (void)inizializza {
+    
+    //--- legge dictionary
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"articoli" ofType:@"plist"];
+    NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path]; //--- prendo tutti gli articoli.
+
+    self.articoli = dic;
+    
+    //--- prendo tutte le CATEGORY
+    NSArray *array = [[self.articoli allKeys] sortedArrayUsingSelector:@selector(compare:)];
+    self.categoryArticoli = array;
+    
+}
+
+- (NSArray *)articoliFromDictionary:(NSDictionary *)dictionary {
+    
+    NSMutableArray *listaTemp = [[NSMutableArray alloc] init];
+    for (id key in dictionary) {
+        
+        id value = [dictionary objectForKey:key];
+        
+        for (id riga in value) {
+            
+            id stringa = (NSString *)riga;
+            NSLog(@"Stringa = '%@'", stringa);
+            [listaTemp addObject:stringa];
+        }
+    }
+    return [[NSArray alloc] initWithArray:listaTemp];
+}
+
+- (NSDictionary *)dictionaryWithString:(NSString *)name {
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:@"plist"];
+    NSDictionary *dictionary = [[NSDictionary alloc] initWithContentsOfFile:path];
+
+    return dictionary;
+}
+
+- (NSDictionary *)getDictionaryArticoli {
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"articoli" ofType:@"plist"];
+    NSDictionary *dictionary = [[NSDictionary alloc] initWithContentsOfFile:path];
+    
+    return dictionary;
+
+}
+
+#pragma mark - Settings Mehods
+
+- (void)loadSettings {
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    alfabeticOrder = [self convertIntegerToBoolean:[defaults objectForKey:@"alfabeticOrder"]];
+    mostraTotaleArticloli = [self convertIntegerToBoolean:[defaults objectForKey:@"mostraTotaleArticoli"]];
+    typeList = [defaults objectForKey:@"sezioni"];
+}
+
+- (BOOL)convertIntegerToBoolean:(id)integerValue {
+    
+    return [integerValue boolValue];
+
+}
+
+@end

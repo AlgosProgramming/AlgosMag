@@ -1,0 +1,79 @@
+//
+//  Articolo.m
+//  Magazzino
+//
+//  Created by Marco Velluto on 30/08/12.
+//  Copyright (c) 2012 Marco Velluto. All rights reserved.
+//
+
+#import "Articolo.h"
+
+@implementation Articolo
+
+@synthesize code = _code;
+@synthesize name = _name;
+@synthesize price = _price;
+@synthesize description = _description;
+
+#pragma mark - Inizializzazione
+
+- (id)initWithCode:(NSString *)code
+          withName:(NSString *)name
+         withPrice:(double)price
+          inValuta:(TipoValuta)valuta
+        inCategory:(NSString *)category
+   withDescription:(NSString *)description {
+    
+    self = [super init];
+    _code = code;
+    _name = name;
+    _description = description;
+    
+    //Converto la valuta
+    if (valuta == EURO) {
+        _price = price;
+    }
+    else if (valuta == USDOLLAR) {
+        _price = [Articolo convertUSDollarToEuro:price];
+    }
+    else if (valuta == POUND) {
+        _price = [Articolo convertPoundToEuro:price];
+    }
+    return self;
+}
+
+- (id)init {
+    
+    return [self initWithCode:@"code" withName:@"name" withPrice:0.00 inValuta:EURO inCategory:@"category" withDescription:@"description"];
+}
+
+#pragma mark - Metodi di comodo
+
++ (double)convertPoundToEuro:(double)ponud {
+    
+    return ponud * (1.26306119);
+}
+
++ (double)convertUSDollarToEuro:(double)usdollar {
+    
+    return usdollar * (0.798849656);
+}
+
++ (NSString *)convertCurrencyToString:(TipoValuta)currency {
+    
+    if (currency == EURO) return @"€";
+    
+    else if (currency == USDOLLAR) return @"$";
+    
+    //se è POUND
+    return @"£";
+    
+}
+
+- (NSString *)priceToString:(double)price {
+    
+    NSString* priceString = [NSString stringWithFormat:@"%f", price];
+    return priceString;
+}
+
+@end

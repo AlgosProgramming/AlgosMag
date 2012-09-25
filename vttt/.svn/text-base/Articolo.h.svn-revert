@@ -1,0 +1,39 @@
+//
+//  Articolo.h
+//  Magazzino
+//
+//  Created by Marco Velluto on 30/08/12.
+//  Copyright (c) 2012 Marco Velluto. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface Articolo : NSObject
+
+typedef enum {
+    
+    EURO,
+    USDOLLAR,
+    POUND
+}TipoValuta;
+
+/*Inserire default currency*/
+@property (nonatomic, assign, readonly) NSString* code;
+@property (nonatomic, assign, readonly) NSString* name;
+@property (nonatomic, assign, readonly) double price;
+@property (nonatomic, assign, readonly) NSString* category;
+@property (nonatomic, assign, readonly) NSString* description;
+
+- (id)initWithCode:(NSString *)code
+          withName:(NSString *)name
+         withPrice:(double)price
+          inValuta:(TipoValuta)valuta
+        inCategory:(NSString *)category
+   withDescription:(NSString *)description;
+
++ (double)convertUSDollarToEuro:(double)usdollar;
++ (double)convertPoundToEuro:(double)ponud;
++ (NSString *)convertCurrencyToString:(TipoValuta)currency;
+- (NSString *)priceToString:(double)price;
+
+@end

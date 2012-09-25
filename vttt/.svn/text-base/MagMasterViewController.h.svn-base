@@ -1,0 +1,50 @@
+//
+//  MagMasterViewController.h
+//  Magazzino
+//
+//  Created by Grails on 24/08/12.
+//  Copyright (c) 2012 algos. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@class MagDetailViewController;
+
+#import <CoreData/CoreData.h>
+
+@interface MagMasterViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+{
+    NSArray *articoliAz;
+    NSDictionary *dicArticoli;
+    NSArray *category;
+    UITableViewStyle style;
+
+}
+
+
+@property (strong, nonatomic) MagDetailViewController *detailViewController;
+
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+
+@property (nonatomic, retain) NSDictionary *dicArticoli;
+@property (nonatomic, retain) NSArray *category;
+@property (nonatomic, retain) NSArray *articoliAz;
+
+@property (nonatomic, retain) NSDictionary *articoli;
+@property (nonatomic, retain) NSArray *categoryArticoli;
+
+@property (nonatomic, readonly)UITableViewStyle style;
+
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *typeListButton;
+
+@property (readonly, nonatomic) IBOutlet UISegmentedControl *changeTypeListButton;
+- (IBAction)pressChageTypeListButton:(id)sender;
+
+- (IBAction)pressTypeListButton:(id)sender;
+- (void)toggleTypeListButton;
+- (void)regolaVista:(BOOL)alfabetic;
+
++ (NSArray *)articoliToDictionry:(NSDictionary *)dictionary;
+
+@end
