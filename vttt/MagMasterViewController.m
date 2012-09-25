@@ -5,7 +5,7 @@
 //
 //  Created by Grails on 24/08/12.
 //  Copyright (c) 2012 algos. All rights reserved.
-//marco
+//
 
 
 #import "MagMasterViewController.h"
