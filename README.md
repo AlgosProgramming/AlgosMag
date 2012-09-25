@@ -1,0 +1,4 @@
+AlgosMag
+========
+
+Algosmag
